@@ -18,11 +18,11 @@ public class Car {
 
     public static class Builder {
 
+        private final Integer year;
+
         private String name;
 
         private String color;
-
-        private Integer year;
 
         private Person owner;
 

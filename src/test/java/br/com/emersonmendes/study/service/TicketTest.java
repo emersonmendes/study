@@ -1,12 +1,8 @@
 package br.com.emersonmendes.study.service;
 
 import br.com.emersonmendes.study.AbstractTest;
-import br.com.emersonmendes.study.entity.EconomicTicket;
-import br.com.emersonmendes.study.entity.ExecutiveTicket;
-import br.com.emersonmendes.study.entity.FirstTicket;
 import br.com.emersonmendes.study.entity.Ticket;
 import br.com.emersonmendes.study.enums.TicketType;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

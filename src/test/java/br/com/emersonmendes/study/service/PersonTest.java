@@ -18,7 +18,7 @@ public class PersonTest extends AbstractTest  {
     public PersonService service;
 
     @Test
-    public void shouldGetAllPersonsGroupedByBloodTest()  {
+    public void shouldGetAllPersonsGroupedByBloodType()  {
 
         final Map<String, List<Person>> result = service.getPersonsGroupedByBloodType();
 

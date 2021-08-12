@@ -1,16 +1,12 @@
 package br.com.emersonmendes.study.service;
 
-import br.com.emersonmendes.study.AbstractTest;
-import br.com.emersonmendes.study.builder.Car;
-import br.com.emersonmendes.study.entity.Person;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.util.List;
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import br.com.emersonmendes.study.AbstractTest;
+import br.com.emersonmendes.study.builder.Car;
 
 public class CarTest extends AbstractTest  {
 

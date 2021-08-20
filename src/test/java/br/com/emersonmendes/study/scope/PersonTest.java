@@ -72,13 +72,13 @@ public class PersonTest extends AbstractTest  {
     }
 
     @Test
-    public void shouldBeTheSameInstancesForAllRequestServices()  {
-        assertThat(serviceRequest1.equals(serviceRequest2)).isEqualTo(true);
+    public void shouldNotBeTheSameInstancesForAllPrototypeServices()  {
+        assertThat(servicePrototype1.equals(servicePrototype2)).isEqualTo(false);
     }
 
     @Test
-    public void shouldNotBeTheSameInstancesForAllPrototypeServices()  {
-        assertThat(servicePrototype1.equals(servicePrototype2)).isEqualTo(false);
+    public void shouldBeTheSameInstancesForAllRequestServices()  {
+        assertThat(serviceRequest1.equals(serviceRequest2)).isEqualTo(true);
     }
 
     @Test

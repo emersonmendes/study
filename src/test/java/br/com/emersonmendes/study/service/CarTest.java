@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.emersonmendes.study.AbstractTest;
-import br.com.emersonmendes.study.builder.Car;
+import br.com.emersonmendes.study.designpattern.builder.Car;
 
 public class CarTest extends AbstractTest  {
 

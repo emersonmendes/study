@@ -1,4 +1,4 @@
-package br.com.emersonmendes.study.builder;
+package br.com.emersonmendes.study.designpattern.builder;
 
 import br.com.emersonmendes.study.entity.Person;
 

@@ -1,6 +1,6 @@
 package br.com.emersonmendes.study.service;
 
-import br.com.emersonmendes.study.builder.Car;
+import br.com.emersonmendes.study.designpattern.builder.Car;
 import br.com.emersonmendes.study.entity.Person;
 import org.springframework.stereotype.Service;
 

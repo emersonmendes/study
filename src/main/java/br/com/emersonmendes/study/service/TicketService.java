@@ -2,7 +2,7 @@ package br.com.emersonmendes.study.service;
 
 import br.com.emersonmendes.study.entity.Ticket;
 import br.com.emersonmendes.study.enums.TicketType;
-import br.com.emersonmendes.study.factory.TicketFactory;
+import br.com.emersonmendes.study.designpattern.factory.TicketFactory;
 import org.springframework.stereotype.Service;
 
 @Service

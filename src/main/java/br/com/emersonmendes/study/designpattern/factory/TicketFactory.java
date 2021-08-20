@@ -1,4 +1,4 @@
-package br.com.emersonmendes.study.factory;
+package br.com.emersonmendes.study.designpattern.factory;
 
 import br.com.emersonmendes.study.entity.EconomicTicket;
 import br.com.emersonmendes.study.entity.ExecutiveTicket;

@@ -1,29 +1,28 @@
 package br.com.emersonmendes.study.serializable;
 
 import br.com.emersonmendes.study.AbstractTest;
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InvalidClassException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-import java.util.function.UnaryOperator;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class DemoSerializableTest extends AbstractTest {
 
+
     @Value("${test.resources}")
     private String testResourcesPath;
+
+
+    @BeforeEach
+    public void before() throws Exception {
+        Files.createDirectories(Path.of(testResourcesPath + "/filesForTest"));
+    }
 
     @Test
     public void shouldSerializeAndDeserializeAnObject() throws Exception {

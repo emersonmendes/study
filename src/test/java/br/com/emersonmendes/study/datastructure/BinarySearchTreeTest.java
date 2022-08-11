@@ -8,6 +8,34 @@ import org.junit.Test;
 public class BinarySearchTreeTest {
 
     @Test
+    public void shouldGetMaxValue() {
+        Node rootNode = Node.of(9000);
+        BinarySearchTree.insert(rootNode, 190);
+        BinarySearchTree.insert(rootNode, 40);
+        BinarySearchTree.insert(rootNode, 400);
+        BinarySearchTree.insert(rootNode, 500);
+        BinarySearchTree.insert(rootNode, 3);
+        BinarySearchTree.insert(rootNode, 10000);
+        BinarySearchTree.insert(rootNode, 1900);
+        BinarySearchTree.insert(rootNode, 1200);
+        Assertions.assertThat(BinarySearchTree.searchMaxValue(rootNode)).isEqualTo(10000);
+    }
+
+    @Test
+    public void shouldGetMinValue() {
+        Node rootNode = Node.of(9000);
+        BinarySearchTree.insert(rootNode, 190);
+        BinarySearchTree.insert(rootNode, 40);
+        BinarySearchTree.insert(rootNode, 400);
+        BinarySearchTree.insert(rootNode, 500);
+        BinarySearchTree.insert(rootNode, 3);
+        BinarySearchTree.insert(rootNode, 10000);
+        BinarySearchTree.insert(rootNode, 1900);
+        BinarySearchTree.insert(rootNode, 1200);
+        Assertions.assertThat(BinarySearchTree.searchMinValue(rootNode)).isEqualTo(3);
+    }
+
+    @Test
     public void shouldSearchABST() {
 
         Node rootNode = Node.of(3, Node.of(2, Node.of(1), Node.of(4)),Node.of(5) );

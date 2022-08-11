@@ -3,6 +3,8 @@ package br.com.emersonmendes.study.datastructures;
 
 import br.com.emersonmendes.study.entity.Node;
 
+import java.util.Objects;
+
 public class BinarySearchTree {
 
     public BinarySearchTree() {
@@ -28,6 +30,24 @@ public class BinarySearchTree {
 
         return root;
 
+    }
+
+    public static int searchMinValue(Node root){
+        Objects.requireNonNull(root,"Root should not be null");
+        Node currentNode = root;
+        while (currentNode.getLeft() != null){
+            currentNode = currentNode.getLeft();
+        }
+        return currentNode.getKey();
+    }
+
+    public static int searchMaxValue(Node root){
+        Objects.requireNonNull(root,"Root should not be null");
+        Node currentNode = root;
+        while (currentNode.getRight() != null){
+            currentNode = currentNode.getRight();
+        }
+        return currentNode.getKey();
     }
 
     public static Node search(Node root, int key){

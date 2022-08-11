@@ -1,25 +1,25 @@
 package br.com.emersonmendes.study.datastructure;
 
-public class BSTNode {
+public class BTNode {
 
     private int key;
 
-    private BSTNode left;
+    private BTNode left;
 
-    private BSTNode right;
+    private BTNode right;
 
-    public BSTNode(int key) {
+    public BTNode(int key) {
         this.key = key;
         this.left = null;
         this.right = null;
     }
 
-    public static BSTNode of(int key){
-        return new BSTNode(key);
+    public static BTNode of(int key){
+        return new BTNode(key);
     }
 
-    public static BSTNode of(int key, BSTNode left, BSTNode right){
-        BSTNode node = new BSTNode(key);
+    public static BTNode of(int key, BTNode left, BTNode right){
+        BTNode node = new BTNode(key);
         node.setLeft(left);
         node.setRight(right);
         return node;
@@ -33,19 +33,19 @@ public class BSTNode {
         this.key = key;
     }
 
-    public BSTNode getLeft() {
+    public BTNode getLeft() {
         return left;
     }
 
-    public void setLeft(BSTNode left) {
+    public void setLeft(BTNode left) {
         this.left = left;
     }
 
-    public BSTNode getRight() {
+    public BTNode getRight() {
         return right;
     }
 
-    public void setRight(BSTNode right) {
+    public void setRight(BTNode right) {
         this.right = right;
     }
 

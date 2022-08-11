@@ -7,14 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -40,6 +33,24 @@ public class ListTest {
         String collect = linkedList.stream().sorted().collect(Collectors.joining(", "));
 
         assertThat(collect).isEqualTo("apple, banana, grape");
+
+    }
+
+    @Test
+    public void shouldReverseLinkedList(){
+
+        List<String> ll = new LinkedList<>();
+
+        ll.add("a1");
+        ll.add("a2");
+        ll.add("a3");
+        ll.add("a4");
+        ll.add("a5");
+
+        List<String> result = ll.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+
+        assertThat(ll.get(4)).isEqualTo("a5");
+        assertThat(result.get(4)).isEqualTo("a1");
 
     }
 

@@ -1,30 +1,28 @@
-package br.com.emersonmendes.study.datastructures;
+package br.com.emersonmendes.study.datastructure;
 
-
-import br.com.emersonmendes.study.entity.Node;
 
 import java.util.Objects;
 
-public class BinarySearchTree {
+class BinarySearchTree {
 
     public BinarySearchTree() {
     }
 
-    public static Node insert(Node root, int key){
+    public static BSTNode insert(BSTNode root, int key){
 
         if(root == null){
-            return Node.of(key);
+            return BSTNode.of(key);
         }
 
         int rootKey = root.getKey();
 
         if(key > rootKey){
             //add right
-            Node rightNode = insert(root.getRight(), key);
+            BSTNode rightNode = insert(root.getRight(), key);
             root.setRight(rightNode);
         } else if (key < rootKey){
             //add left
-            Node leftNode = insert(root.getLeft(), key);
+            BSTNode leftNode = insert(root.getLeft(), key);
             root.setLeft(leftNode);
         }
 
@@ -32,25 +30,25 @@ public class BinarySearchTree {
 
     }
 
-    public static int searchMinValue(Node root){
+    public static int searchMinValue(BSTNode root){
         Objects.requireNonNull(root,"Root should not be null");
-        Node currentNode = root;
+        BSTNode currentNode = root;
         while (currentNode.getLeft() != null){
             currentNode = currentNode.getLeft();
         }
         return currentNode.getKey();
     }
 
-    public static int searchMaxValue(Node root){
+    public static int searchMaxValue(BSTNode root){
         Objects.requireNonNull(root,"Root should not be null");
-        Node currentNode = root;
+        BSTNode currentNode = root;
         while (currentNode.getRight() != null){
             currentNode = currentNode.getRight();
         }
         return currentNode.getKey();
     }
 
-    public static Node search(Node root, int key){
+    public static BSTNode search(BSTNode root, int key){
 
         // Base Cases: root is null or key is present at root
         if (root == null || root.getKey() == key) {
@@ -67,14 +65,14 @@ public class BinarySearchTree {
 
     }
 
-    public static boolean isBST(Node node){
+    public static boolean isBST(BSTNode node){
 
         if(node == null){
             return true;
         }
 
-        Node left = node.getLeft();
-        Node right = node.getRight();
+        BSTNode left = node.getLeft();
+        BSTNode right = node.getRight();
         int key = node.getKey();
 
         if(left != null && left.getKey() > key){

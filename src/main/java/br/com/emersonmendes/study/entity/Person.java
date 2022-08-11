@@ -48,8 +48,8 @@ public class Person {
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
         return Objects.equals(name, person.name) &&
-                Objects.equals(bloodType, person.bloodType) &&
-                Objects.equals(age, person.age);
+            Objects.equals(bloodType, person.bloodType) &&
+            Objects.equals(age, person.age);
     }
 
     @Override

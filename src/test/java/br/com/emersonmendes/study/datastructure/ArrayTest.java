@@ -3,7 +3,8 @@ package br.com.emersonmendes.study.datastructure;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -47,6 +48,36 @@ public class ArrayTest {
         assertThat(numbers[2]).isEqualTo(3);
         assertThat(numbers[3]).isEqualTo(4);
         assertThat(numbers[4]).isEqualTo(5);
+    }
+
+    @Test
+    public void shouldFindRepeatingAndMissingElement(){
+
+        final int[] numbers = { 1, 10, 11, 12,12, 17};
+
+        printTwoElements(numbers);
+
+    }
+
+
+    static void printTwoElements(int arr[]){
+
+        Map<Integer, Boolean> numberMap = new HashMap<>();
+
+        for (int i : arr) {
+            if (numberMap.get(i) == null) {
+                numberMap.put(i, true);
+            } else {
+                System.out.println("Repeating = " + i);
+            }
+        }
+
+        for (int i = 1; i <=  arr.length; i++) {
+            if (numberMap.get(i) == null) {
+                System.out.println("Missing = " + i);
+            }
+        }
+
     }
 
 }

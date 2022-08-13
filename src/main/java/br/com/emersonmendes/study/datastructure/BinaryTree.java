@@ -1,8 +1,7 @@
 package br.com.emersonmendes.study.datastructure;
 
 
-import java.util.Objects;
-import java.util.Stack;
+import java.util.*;
 
 class BinaryTree {
 
@@ -139,6 +138,95 @@ class BinaryTree {
 
         }
 
+    }
+
+    public static BTNode invert(BTNode root) {
+        if (root == null) {
+            return null;
+        }
+        BTNode temp = root.getLeft();
+        root.setLeft(invert(root.getRight()));
+        root.setRight(invert(temp));
+        return root;
+    }
+
+    public static void printLeafNodes(BTNode root) {
+        printNodeInternal(Collections.singletonList(root), 1, maxLevel(root));
+    }
+
+    private static void printNodeInternal(List<BTNode> nodes, int level, int maxLevel) {
+        if (nodes.isEmpty() || isAllElementsNull(nodes)) {
+            return;
+        }
+
+        int floor = maxLevel - level;
+        int edgeLines = (int) Math.pow(2, (Math.max(floor - 1, 0)));
+        int firstSpaces = (int) Math.pow(2, (floor)) - 1;
+        int betweenSpaces = (int) Math.pow(2, (floor + 1)) - 1;
+
+        printWhitespaces(firstSpaces);
+
+        List<BTNode> newNodes = new ArrayList<>();
+        for (BTNode node : nodes) {
+            if (node != null) {
+                System.out.print(node.getKey());
+                newNodes.add(node.getLeft());
+                newNodes.add(node.getRight());
+            } else {
+                newNodes.add(null);
+                newNodes.add(null);
+                System.out.print(" ");
+            }
+            printWhitespaces(betweenSpaces);
+        }
+        System.out.println();
+
+        for (int i = 1; i <= edgeLines; i++) {
+            for (BTNode node : nodes) {
+                printWhitespaces(firstSpaces - i);
+                if (node == null) {
+                    printWhitespaces(edgeLines + edgeLines + i + 1);
+                    continue;
+                }
+                if (node.getLeft() != null) {
+                    System.out.print(" /");
+                } else {
+                    printWhitespaces(1);
+                }
+                printWhitespaces(i + i - 1);
+                if (node.getRight() != null) {
+                    System.out.print("\\");
+                } else {
+                    printWhitespaces(1);
+                }
+                printWhitespaces(edgeLines + edgeLines - i);
+            }
+            System.out.println();
+        }
+
+        printNodeInternal(newNodes, level + 1, maxLevel);
+    }
+
+    private static void printWhitespaces(int count) {
+        for (int i = 0; i < count; i++) {
+            System.out.print(" ");
+        }
+    }
+
+    private static int maxLevel(BTNode node) {
+        if (node == null) {
+            return 0;
+        }
+        return Math.max(maxLevel(node.getLeft()), maxLevel(node.getRight())) + 1;
+    }
+
+    private static boolean isAllElementsNull(List list) {
+        for (Object object : list) {
+            if (object != null) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

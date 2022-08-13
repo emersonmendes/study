@@ -18,36 +18,36 @@ public class BinaryTreeTest {
         rootNode.setLeft(twoNode);
         rootNode.setRight(threeNode);
 
-        BinarySearchTree.printZigZagTraversal(rootNode);
+        BinaryTree.printZigZagTraversal(rootNode);
 
     }
 
     @Test
     public void shouldGetMaxValue() {
         BTNode rootNode = BTNode.of(9000);
-        BinarySearchTree.insert(rootNode, 190);
-        BinarySearchTree.insert(rootNode, 40);
-        BinarySearchTree.insert(rootNode, 400);
-        BinarySearchTree.insert(rootNode, 500);
-        BinarySearchTree.insert(rootNode, 3);
-        BinarySearchTree.insert(rootNode, 10000);
-        BinarySearchTree.insert(rootNode, 1900);
-        BinarySearchTree.insert(rootNode, 1200);
-        Assertions.assertThat(BinarySearchTree.searchMaxValue(rootNode)).isEqualTo(10000);
+        BinaryTree.insert(rootNode, 190);
+        BinaryTree.insert(rootNode, 40);
+        BinaryTree.insert(rootNode, 400);
+        BinaryTree.insert(rootNode, 500);
+        BinaryTree.insert(rootNode, 3);
+        BinaryTree.insert(rootNode, 10000);
+        BinaryTree.insert(rootNode, 1900);
+        BinaryTree.insert(rootNode, 1200);
+        Assertions.assertThat(BinaryTree.searchMaxValue(rootNode)).isEqualTo(10000);
     }
 
     @Test
     public void shouldGetMinValue() {
         BTNode rootNode = BTNode.of(9000);
-        BinarySearchTree.insert(rootNode, 190);
-        BinarySearchTree.insert(rootNode, 40);
-        BinarySearchTree.insert(rootNode, 400);
-        BinarySearchTree.insert(rootNode, 500);
-        BinarySearchTree.insert(rootNode, 3);
-        BinarySearchTree.insert(rootNode, 10000);
-        BinarySearchTree.insert(rootNode, 1900);
-        BinarySearchTree.insert(rootNode, 1200);
-        Assertions.assertThat(BinarySearchTree.searchMinValue(rootNode)).isEqualTo(3);
+        BinaryTree.insert(rootNode, 190);
+        BinaryTree.insert(rootNode, 40);
+        BinaryTree.insert(rootNode, 400);
+        BinaryTree.insert(rootNode, 500);
+        BinaryTree.insert(rootNode, 3);
+        BinaryTree.insert(rootNode, 10000);
+        BinaryTree.insert(rootNode, 1900);
+        BinaryTree.insert(rootNode, 1200);
+        Assertions.assertThat(BinaryTree.searchMinValue(rootNode)).isEqualTo(3);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class BinaryTreeTest {
 
         BTNode rootNode = BTNode.of(3, BTNode.of(2, BTNode.of(1), BTNode.of(4)), BTNode.of(5) );
 
-        BTNode foundNode = BinarySearchTree.search(rootNode, 2);
+        BTNode foundNode = BinaryTree.search(rootNode, 2);
         Assertions.assertThat(foundNode).isNotNull();
         Assertions.assertThat(foundNode.getKey()).isEqualTo(2);
         Assertions.assertThat(foundNode.getRight().getKey()).isEqualTo(4);
@@ -67,12 +67,12 @@ public class BinaryTreeTest {
     public void shouldCheckInsertBST() {
 
         BTNode rootNode = BTNode.of(300);
-        BinarySearchTree.insert(rootNode, 190);
-        BinarySearchTree.insert(rootNode, 500);
-        BinarySearchTree.insert(rootNode, 20);
-        BinarySearchTree.insert(rootNode, 543);
-        BinarySearchTree.insert(rootNode, 2);
-        BinarySearchTree.insert(rootNode, 191);
+        BinaryTree.insert(rootNode, 190);
+        BinaryTree.insert(rootNode, 500);
+        BinaryTree.insert(rootNode, 20);
+        BinaryTree.insert(rootNode, 543);
+        BinaryTree.insert(rootNode, 2);
+        BinaryTree.insert(rootNode, 191);
 
         Assertions.assertThat(rootNode.getKey()).isEqualTo(300);
         Assertions.assertThat(rootNode.getLeft().getKey()).isEqualTo(190);
@@ -97,12 +97,12 @@ public class BinaryTreeTest {
 
         rootNode.setRight(BTNode.of(5));
 
-        Assertions.assertThat(BinarySearchTree.isBST(rootNode)).isTrue();
+        Assertions.assertThat(BinaryTree.isBST(rootNode)).isTrue();
 
         fourNode.setLeft(BTNode.of(5));
         fourNode.setRight(BTNode.of(7));
 
-        Assertions.assertThat(BinarySearchTree.isBST(rootNode)).isFalse();
+        Assertions.assertThat(BinaryTree.isBST(rootNode)).isFalse();
 
     }
 

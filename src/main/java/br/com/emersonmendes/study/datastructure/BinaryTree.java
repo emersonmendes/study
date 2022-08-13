@@ -4,9 +4,9 @@ package br.com.emersonmendes.study.datastructure;
 import java.util.Objects;
 import java.util.Stack;
 
-class BinarySearchTree {
+class BinaryTree {
 
-    public BinarySearchTree() {
+    public BinaryTree() {
     }
 
     public static BTNode insert(BTNode root, int key){

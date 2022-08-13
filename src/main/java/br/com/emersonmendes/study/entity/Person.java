@@ -57,4 +57,15 @@ public class Person {
         return Objects.hash(name, bloodType, age);
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", bloodType='" + bloodType + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
+
+
 }

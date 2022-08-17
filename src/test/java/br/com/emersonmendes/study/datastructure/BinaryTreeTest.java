@@ -1,20 +1,54 @@
 package br.com.emersonmendes.study.datastructure;
 
+import br.com.emersonmendes.study.datastructure.BinaryTree.Node;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 public class BinaryTreeTest {
 
     @Test
+    public void any() {
+        Node rootNode = Node.of(1);
+        BinaryTree.insert(rootNode, 2);
+        BinaryTree.insert(rootNode, 3);
+        BinaryTree.insert(rootNode, 4);
+        BinaryTree.insert(rootNode, 5);
+        BinaryTree.insert(rootNode, 6);
+        BinaryTree.printLeafNodes(rootNode);
+    }
+
+    @Test
+    public void shouldCheckBalancedBinaryTree() {
+
+        Node rootNode = Node.of(100);
+        BinaryTree.insert(rootNode, 20);
+        BinaryTree.insert(rootNode, 150);
+        BinaryTree.insert(rootNode, 120);
+        BinaryTree.insert(rootNode, 250);
+
+        BinaryTree.printLeafNodes(rootNode);
+        boolean balanced1 = BinaryTree.isBalanced(rootNode);
+        Assertions.assertThat(balanced1).isTrue();
+
+        BinaryTree.insert(rootNode, 110);
+        BinaryTree.insert(rootNode, 160);
+
+        BinaryTree.printLeafNodes(rootNode);
+        boolean balanced2 = BinaryTree.isBalanced(rootNode);
+        Assertions.assertThat(balanced2).isFalse();
+
+    }
+
+    @Test
     public void shouldPrintZigZagTraversal() {
 
-        BinaryTree.Node rootNode = BinaryTree.Node.of(1);
-        BinaryTree.Node threeNode = BinaryTree.Node.of(3);
-        threeNode.setLeft(BinaryTree.Node.of(5));
-        threeNode.setRight(BinaryTree.Node.of(4));
-        BinaryTree.Node twoNode = BinaryTree.Node.of(2);
-        twoNode.setLeft(BinaryTree.Node.of(7));
-        twoNode.setRight(BinaryTree.Node.of(6));
+        Node rootNode = Node.of(1);
+        Node threeNode = Node.of(3);
+        threeNode.setLeft(Node.of(5));
+        threeNode.setRight(Node.of(4));
+        Node twoNode = Node.of(2);
+        twoNode.setLeft(Node.of(7));
+        twoNode.setRight(Node.of(6));
         rootNode.setLeft(twoNode);
         rootNode.setRight(threeNode);
 
@@ -24,7 +58,7 @@ public class BinaryTreeTest {
 
     @Test
     public void shouldGetMaxValue() {
-        BinaryTree.Node rootNode = BinaryTree.Node.of(9000);
+        Node rootNode = Node.of(9000);
         BinaryTree.insert(rootNode, 190);
         BinaryTree.insert(rootNode, 40);
         BinaryTree.insert(rootNode, 400);
@@ -38,7 +72,7 @@ public class BinaryTreeTest {
 
     @Test
     public void shouldGetMinValue() {
-        BinaryTree.Node rootNode = BinaryTree.Node.of(9000);
+        Node rootNode = Node.of(9000);
         BinaryTree.insert(rootNode, 190);
         BinaryTree.insert(rootNode, 40);
         BinaryTree.insert(rootNode, 400);
@@ -53,9 +87,9 @@ public class BinaryTreeTest {
     @Test
     public void shouldSearchABST() {
 
-        BinaryTree.Node rootNode = BinaryTree.Node.of(3, BinaryTree.Node.of(2, BinaryTree.Node.of(1), BinaryTree.Node.of(4)), BinaryTree.Node.of(5) );
+        Node rootNode = Node.of(3, Node.of(2, Node.of(1), Node.of(4)), Node.of(5) );
 
-        BinaryTree.Node foundNode = BinaryTree.search(rootNode, 2);
+        Node foundNode = BinaryTree.search(rootNode, 2);
         Assertions.assertThat(foundNode).isNotNull();
         Assertions.assertThat(foundNode.getData()).isEqualTo(2);
         Assertions.assertThat(foundNode.getRight().getData()).isEqualTo(4);
@@ -66,7 +100,7 @@ public class BinaryTreeTest {
     @Test
     public void shouldCheckInsertBST() {
 
-        BinaryTree.Node rootNode = BinaryTree.Node.of(300);
+        Node rootNode = Node.of(300);
         BinaryTree.insert(rootNode, 190);
         BinaryTree.insert(rootNode, 500);
         BinaryTree.insert(rootNode, 20);
@@ -88,7 +122,7 @@ public class BinaryTreeTest {
     @Test
     public void shouldCheckBST() {
 
-        BinaryTree.Node rootNode = BinaryTree.Node.of(30);
+        Node rootNode = Node.of(30);
 
         BinaryTree.insert(rootNode, 20);
         BinaryTree.insert(rootNode, 50);
@@ -108,7 +142,7 @@ public class BinaryTreeTest {
     @Test
     public void shouldInvertBST() {
 
-        BinaryTree.Node root = BinaryTree.insert(null, 20);
+        Node root = BinaryTree.insert(null, 20);
         BinaryTree.insert(root, 15);
         BinaryTree.insert(root, 45);
         BinaryTree.insert(root, 7);

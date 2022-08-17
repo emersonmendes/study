@@ -7,25 +7,21 @@ class BinaryTree {
 
     public BinaryTree() {}
 
-    public static Node insert(Node root, int data){
+    public static Node insert(Node node, int data){
 
-        if(root == null){
+        if(node == null){
             return Node.of(data);
         }
 
-        int rootKey = root.getData();
+        int rootData = node.getData();
 
-        if(data > rootKey){
-            //add right
-            Node rightNode = insert(root.getRight(), data);
-            root.setRight(rightNode);
-        } else if (data < rootKey){
-            //add left
-            Node leftNode = insert(root.getLeft(), data);
-            root.setLeft(leftNode);
+        if(data > rootData){
+            node.setRight(insert(node.getRight(), data));
+        } else if (data < rootData){
+            node.setLeft(insert(node.getLeft(), data));
         }
 
-        return root;
+        return node;
 
     }
 
@@ -226,6 +222,48 @@ class BinaryTree {
             }
         }
         return true;
+    }
+
+    private static boolean hasAnyChild(Node node) {
+        if(node == null){
+            return false;
+        }
+        return node.getLeft() != null || node.getRight() != null;
+    }
+
+    public static boolean isBalanced(Node rootNode) {
+        Height height = new Height();
+        return isBalanced(rootNode, height);
+    }
+
+    public static boolean isBalanced(Node rootNode, Height height) {
+
+        if(rootNode == null){
+            height.value = 0;
+            return true;
+        }
+
+        Height leftHeight = new Height();
+        Height rightHeight = new Height();
+
+        boolean leftIsBalanced = isBalanced(rootNode.getLeft(), leftHeight);
+        boolean rightIsBalanced = isBalanced(rootNode.getRight(), rightHeight);
+
+        height.value = Math.max(leftHeight.value, rightHeight.value) + 1;
+
+        if(
+            leftHeight.value - rightHeight.value >= 2 ||
+            rightHeight.value - leftHeight.value >= 2
+        ){
+            return false;
+        }
+
+        return leftIsBalanced && rightIsBalanced;
+
+    }
+
+    static class Height {
+        int value = 0;
     }
 
     static class Node {

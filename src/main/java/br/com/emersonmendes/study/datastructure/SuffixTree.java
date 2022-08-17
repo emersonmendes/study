@@ -8,19 +8,19 @@ public class SuffixTree {
 
     private static final String WORD_TERMINATION = "$";
     private static final int POSITION_UNDEFINED = -1;
-    private STNode root;
+    private Node root;
     private String fullText;
 
     public SuffixTree(String text) {
-        root = new STNode("", POSITION_UNDEFINED);
+        root = new Node("", POSITION_UNDEFINED);
         for (int i = 0; i < text.length(); i++) {
             addSuffix(text.substring(i) + WORD_TERMINATION, i);
         }
         fullText = text;
     }
 
-    private void addChildNode(STNode parentNode, String text, int index) {
-        parentNode.getChildren().add(new STNode(text, index));
+    private void addChildNode(Node parentNode, String text, int index) {
+        parentNode.getChildren().add(new Node(text, index));
     }
 
     private String getLongestCommonPrefix(String str1, String str2) {
@@ -33,10 +33,10 @@ public class SuffixTree {
         return str1.substring(0, compareLength);
     }
 
-    private void splitNodeToParentAndChild(STNode parentNode, String parentNewText, String childNewText) {
+    private void splitNodeToParentAndChild(Node parentNode, String parentNewText, String childNewText) {
 
-        STNode childNode = new STNode(childNewText, parentNode.getPosition());
-        List<STNode> children = parentNode.getChildren();
+        Node childNode = new Node(childNewText, parentNode.getPosition());
+        List<Node> children = parentNode.getChildren();
 
         if (children.size() > 0) {
             while (children.size() > 0) {
@@ -50,13 +50,13 @@ public class SuffixTree {
 
     }
 
-    List<STNode> getAllNodesInTraversePath(String pattern, STNode startNode, boolean isAllowPartialMatch) {
+    List<Node> getAllNodesInTraversePath(String pattern, Node startNode, boolean isAllowPartialMatch) {
 
-        List<STNode> nodes = new ArrayList<>();
+        List<Node> nodes = new ArrayList<>();
 
         for (int i = 0; i < startNode.getChildren().size(); i++) {
 
-            STNode currentNode = startNode.getChildren().get(i);
+            Node currentNode = startNode.getChildren().get(i);
             String nodeText = currentNode.getText();
 
             if (pattern.charAt(0) == nodeText.charAt(0)) {
@@ -78,7 +78,7 @@ public class SuffixTree {
 
                 nodes.add(currentNode);
                 if (pattern.length() > compareLength) {
-                    List<STNode> nodes2 = getAllNodesInTraversePath(pattern.substring(compareLength), currentNode, isAllowPartialMatch);
+                    List<Node> nodes2 = getAllNodesInTraversePath(pattern.substring(compareLength), currentNode, isAllowPartialMatch);
                     if (nodes2.size() > 0) {
                         nodes.addAll(nodes2);
                     } else if (!isAllowPartialMatch) {
@@ -91,7 +91,7 @@ public class SuffixTree {
         return nodes;
     }
 
-    private void extendNode(STNode node, String newText, int position) {
+    private void extendNode(Node node, String newText, int position) {
 
         String currentText = node.getText();
         String commonPrefix = getLongestCommonPrefix(currentText, newText);
@@ -107,11 +107,11 @@ public class SuffixTree {
     }
 
     private void addSuffix(String suffix, int position) {
-        List<STNode> nodes = getAllNodesInTraversePath(suffix, root, true);
+        List<Node> nodes = getAllNodesInTraversePath(suffix, root, true);
         if (nodes.size() == 0) {
             addChildNode(root, suffix, position);
         } else {
-            STNode lastNode = nodes.remove(nodes.size() - 1);
+            Node lastNode = nodes.remove(nodes.size() - 1);
             String newText = suffix;
             if (nodes.size() > 0) {
                 String existingSuffixUptoLastNode = nodes.stream()
@@ -123,7 +123,7 @@ public class SuffixTree {
         }
     }
 
-    private List<Integer> getPositions(STNode node) {
+    private List<Integer> getPositions(Node node) {
         List<Integer> positions = new ArrayList<>();
         if (node.getText().endsWith(WORD_TERMINATION)) {
             positions.add(node.getPosition());
@@ -144,10 +144,10 @@ public class SuffixTree {
     public List<String> searchText(String pattern) {
 
         List<String> result = new ArrayList<>();
-        List<STNode> nodes = getAllNodesInTraversePath(pattern, root, false);
+        List<Node> nodes = getAllNodesInTraversePath(pattern, root, false);
 
         if (nodes.size() > 0) {
-            STNode lastNode = nodes.get(nodes.size() - 1);
+            Node lastNode = nodes.get(nodes.size() - 1);
             if (lastNode != null) {
                 List<Integer> positions = getPositions(lastNode);
                 positions = positions.stream().sorted().collect(Collectors.toList());
@@ -159,6 +159,45 @@ public class SuffixTree {
 
     public static void main(String[] args) {
         System.out.println(new SuffixTree("").getLongestCommonPrefix("emerson","emerindo"));
+    }
+
+    static class Node {
+
+        private String text;
+        private List<Node> children;
+        private int position;
+
+        public Node(String word, int position) {
+            this.text = word;
+            this.position = position;
+            this.children = new ArrayList<>();
+        }
+
+        public String getText() {
+            return text;
+        }
+
+
+        public List<Node> getChildren() {
+            return children;
+        }
+
+        public int getPosition() {
+            return position;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        public void setChildren(List<Node> children) {
+            this.children = children;
+        }
+
+        public void setPosition(int position) {
+            this.position = position;
+        }
+
     }
 
 }

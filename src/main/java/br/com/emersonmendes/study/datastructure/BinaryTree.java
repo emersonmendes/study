@@ -5,24 +5,23 @@ import java.util.*;
 
 class BinaryTree {
 
-    public BinaryTree() {
-    }
+    public BinaryTree() {}
 
-    public static BTNode insert(BTNode root, int key){
+    public static Node insert(Node root, int data){
 
         if(root == null){
-            return BTNode.of(key);
+            return Node.of(data);
         }
 
-        int rootKey = root.getKey();
+        int rootKey = root.getData();
 
-        if(key > rootKey){
+        if(data > rootKey){
             //add right
-            BTNode rightNode = insert(root.getRight(), key);
+            Node rightNode = insert(root.getRight(), data);
             root.setRight(rightNode);
-        } else if (key < rootKey){
+        } else if (data < rootKey){
             //add left
-            BTNode leftNode = insert(root.getLeft(), key);
+            Node leftNode = insert(root.getLeft(), data);
             root.setLeft(leftNode);
         }
 
@@ -30,56 +29,56 @@ class BinaryTree {
 
     }
 
-    public static int searchMinValue(BTNode root){
+    public static int searchMinValue(Node root){
         Objects.requireNonNull(root,"Root should not be null");
-        BTNode currentNode = root;
+        Node currentNode = root;
         while (currentNode.getLeft() != null){
             currentNode = currentNode.getLeft();
         }
-        return currentNode.getKey();
+        return currentNode.getData();
     }
 
-    public static int searchMaxValue(BTNode root){
+    public static int searchMaxValue(Node root){
         Objects.requireNonNull(root,"Root should not be null");
-        BTNode currentNode = root;
+        Node currentNode = root;
         while (currentNode.getRight() != null){
             currentNode = currentNode.getRight();
         }
-        return currentNode.getKey();
+        return currentNode.getData();
     }
 
-    public static BTNode search(BTNode root, int key){
+    public static Node search(Node root, int data){
 
-        // Base Cases: root is null or key is present at root
-        if (root == null || root.getKey() == key) {
+        // Base Cases: root is null or data is present at root
+        if (root == null || root.getData() == data) {
             return root;
         }
 
-        // Key is greater than root's key
-        if (root.getKey() < key) {
-            return search(root.getRight(), key);
+        // Data is greater than root's data
+        if (root.getData() < data) {
+            return search(root.getRight(), data);
         }
 
-        // Key is smaller than root's key
-        return search(root.getLeft(), key);
+        // Data is smaller than root's data
+        return search(root.getLeft(), data);
 
     }
 
-    public static boolean isBST(BTNode node){
+    public static boolean isBST(Node node){
 
         if(node == null){
             return true;
         }
 
-        BTNode left = node.getLeft();
-        BTNode right = node.getRight();
-        int key = node.getKey();
+        Node left = node.getLeft();
+        Node right = node.getRight();
+        int data = node.getData();
 
-        if(left != null && left.getKey() > key){
+        if(left != null && left.getData() > data){
             return false;
         }
 
-        if(right != null && right.getKey() < key){
+        if(right != null && right.getData() < data){
             return false;
         }
 
@@ -92,14 +91,14 @@ class BinaryTree {
     }
 
 
-    public static void printZigZagTraversal(BTNode rootNode) {
+    public static void printZigZagTraversal(Node rootNode) {
 
         if(rootNode == null){
             return;
         }
 
-        Stack<BTNode> currentLevel = new Stack<>();
-        Stack<BTNode> nextLevel = new Stack<>();
+        Stack<Node> currentLevel = new Stack<>();
+        Stack<Node> nextLevel = new Stack<>();
 
         currentLevel.push(rootNode);
 
@@ -108,10 +107,10 @@ class BinaryTree {
         while (!currentLevel.isEmpty()) {
 
             // pop out of stack
-            BTNode node = currentLevel.pop();
+            Node node = currentLevel.pop();
 
             // print the data in it
-            System.out.print(node.getKey() + " ");
+            System.out.print(node.getData() + " ");
 
             if (leftToRight) {
                 if (node.getLeft() != null) {
@@ -131,7 +130,7 @@ class BinaryTree {
 
             if (currentLevel.isEmpty()) {
                 leftToRight = !leftToRight;
-                Stack<BTNode> temp = currentLevel;
+                Stack<Node> temp = currentLevel;
                 currentLevel = nextLevel;
                 nextLevel = temp;
             }
@@ -140,21 +139,21 @@ class BinaryTree {
 
     }
 
-    public static BTNode invert(BTNode root) {
+    public static Node invert(Node root) {
         if (root == null) {
             return null;
         }
-        BTNode temp = root.getLeft();
+        Node temp = root.getLeft();
         root.setLeft(invert(root.getRight()));
         root.setRight(invert(temp));
         return root;
     }
 
-    public static void printLeafNodes(BTNode root) {
+    public static void printLeafNodes(Node root) {
         printNodeInternal(Collections.singletonList(root), 1, maxLevel(root));
     }
 
-    private static void printNodeInternal(List<BTNode> nodes, int level, int maxLevel) {
+    private static void printNodeInternal(List<Node> nodes, int level, int maxLevel) {
         if (nodes.isEmpty() || isAllElementsNull(nodes)) {
             return;
         }
@@ -166,10 +165,10 @@ class BinaryTree {
 
         printWhitespaces(firstSpaces);
 
-        List<BTNode> newNodes = new ArrayList<>();
-        for (BTNode node : nodes) {
+        List<Node> newNodes = new ArrayList<>();
+        for (Node node : nodes) {
             if (node != null) {
-                System.out.print(node.getKey());
+                System.out.print(node.getData());
                 newNodes.add(node.getLeft());
                 newNodes.add(node.getRight());
             } else {
@@ -182,7 +181,7 @@ class BinaryTree {
         System.out.println();
 
         for (int i = 1; i <= edgeLines; i++) {
-            for (BTNode node : nodes) {
+            for (Node node : nodes) {
                 printWhitespaces(firstSpaces - i);
                 if (node == null) {
                     printWhitespaces(edgeLines + edgeLines + i + 1);
@@ -213,7 +212,7 @@ class BinaryTree {
         }
     }
 
-    private static int maxLevel(BTNode node) {
+    private static int maxLevel(Node node) {
         if (node == null) {
             return 0;
         }
@@ -227,6 +226,55 @@ class BinaryTree {
             }
         }
         return true;
+    }
+
+    static class Node {
+
+        private int data;
+        private Node left;
+        private Node right;
+
+        public Node(int data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+
+        public static Node of(int data){
+            return new Node(data);
+        }
+
+        public static Node of(int data, Node left, Node right){
+            Node node = new Node(data);
+            node.setLeft(left);
+            node.setRight(right);
+            return node;
+        }
+
+        public int getData() {
+            return data;
+        }
+
+        public void setData(int data) {
+            this.data = data;
+        }
+
+        public Node getLeft() {
+            return left;
+        }
+
+        public void setLeft(Node left) {
+            this.left = left;
+        }
+
+        public Node getRight() {
+            return right;
+        }
+
+        public void setRight(Node right) {
+            this.right = right;
+        }
+
     }
 
 }

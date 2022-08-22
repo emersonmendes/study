@@ -2,9 +2,7 @@ package br.com.emersonmendes.study.datastructure;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -80,4 +78,10 @@ public class ArrayTest {
 
     }
 
+    @Test
+    void any() {
+        List<String> synchronizedList = Collections.synchronizedList(new ArrayList<>());
+
+
+    }
 }

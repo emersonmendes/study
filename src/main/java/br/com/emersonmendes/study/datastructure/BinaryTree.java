@@ -86,17 +86,165 @@ class BinaryTree {
 
     }
 
+    static class NodeWrapper {
 
-    public static void printZigZagTraversal(Node rootNode) {
+        Node node;
+        int level;
 
-        if(rootNode == null){
+        private NodeWrapper(Node node, int level) {
+            this.node = node;
+            this.level = level;
+        }
+
+        static NodeWrapper of(Node node, int level){
+            return new NodeWrapper(node, level);
+        }
+
+    }
+
+    public static void printTopViewWrapper(Node root) {
+
+        Map<Integer, Integer> nodeValuesMap = new TreeMap<>();
+        Queue<NodeWrapper> queue = new LinkedList<>();
+
+        queue.add(NodeWrapper.of(root, 0));
+
+        while(!queue.isEmpty()){
+
+            NodeWrapper nodeWrapper = queue.poll();
+            Node node = nodeWrapper.node;
+            int level = nodeWrapper.level;
+
+            if(!nodeValuesMap.containsKey(level)){
+                nodeValuesMap.put(level, node.data);
+            }
+
+            if(node.left != null){
+                queue.add(NodeWrapper.of(node.left, level - 1));
+            }
+
+            if(node.right != null){
+                queue.add(NodeWrapper.of(node.right, level + 1));
+            }
+
+        }
+
+        for (Integer value : nodeValuesMap.values()) {
+            System.out.print(value + " ");
+        }
+
+    }
+
+    public static void printTopView(Node root) {
+
+        Map<Integer, Integer> vLevels = new HashMap<>();
+
+        Map<Integer, Integer> nodeValuesMap = new TreeMap<>();
+        Queue<Node> queue = new LinkedList<>();
+
+        vLevels.put(root.data, 0);
+        queue.add(root);
+
+        while(!queue.isEmpty()){
+
+            Node node = queue.poll();
+
+            Integer nodeLevel = vLevels.get(node.data);
+            if(!nodeValuesMap.containsKey(nodeLevel)){
+                nodeValuesMap.put(nodeLevel, node.data);
+            }
+
+            if(node.left != null){
+                queue.add(node.left);
+                vLevels.put(node.left.data, nodeLevel - 1);
+            }
+
+            if(node.right != null){
+                queue.add(node.right);
+                vLevels.put(node.right.data, nodeLevel + 1 );
+            }
+
+        }
+
+        for (Integer value : nodeValuesMap.values()) {
+            System.out.print(value + " ");
+        }
+
+    }
+
+    private static List<Node> searchKeepParent(int v, Node root) {
+
+        List<Node> result = new ArrayList<>();
+
+        while(true){
+
+            result.add(root);
+
+            Node left = root.left;
+            Node right = root.right;
+
+            if(v < root.data){
+                root = left;
+            } else if (v > root.data){
+                root = right;
+            } else {
+                return result;
+            }
+
+        }
+
+    }
+
+    public static Node getLowestCommonAncestor(Node root, int v1, int v2){
+        List<Node> v1List = searchKeepParent(v1, root);
+        List<Node> v2List = searchKeepParent(v2, root);
+        return v1List.stream().filter(v2List::contains).reduce((f, s) -> s ).orElse(root);
+    }
+
+    public static String printLevelOrderTraversal(Node root){
+
+        List<Integer> numbers = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.add(root);
+
+        while(!queue.isEmpty()){
+
+            Node node = queue.poll();
+            numbers.add(node.data);
+
+            if(node.left != null){
+                queue.add(node.left);
+            }
+
+            if(node.right != null){
+                queue.add(node.right);
+            }
+
+        }
+
+        StringBuilder result = new StringBuilder();
+
+        for(Integer number: numbers){
+            result.append(" ").append(number);
+        }
+
+        System.out.print(result);
+
+        return result.toString();
+
+    }
+
+    public static void printZigZagTraversal(Node root) {
+
+        if(root == null){
             return;
         }
 
         Stack<Node> currentLevel = new Stack<>();
         Stack<Node> nextLevel = new Stack<>();
 
-        currentLevel.push(rootNode);
+        currentLevel.push(root);
 
         boolean leftToRight = true;
 
@@ -215,7 +363,7 @@ class BinaryTree {
         return Math.max(maxLevel(node.getLeft()), maxLevel(node.getRight())) + 1;
     }
 
-    private static boolean isAllElementsNull(List list) {
+    private static boolean isAllElementsNull(List<?> list) {
         for (Object object : list) {
             if (object != null) {
                 return false;

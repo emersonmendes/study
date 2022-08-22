@@ -40,6 +40,58 @@ public class BinaryTreeTest {
     }
 
     @Test
+    public void shouldPrintTopView() {
+
+        String data = "37 23 108 59 86 64 94 14 105 17 111 65 55 31 79 97 78 25 50 22 66 46 104 98 81 90 68 40 103 77 74 18 69 82 41 4 48 83 67 6 2 95 54 100 99 84 34 88 27 72 32 62 9 56 109 115 33 15 91 29 85 114 112 20 26 30 93 96 87 42 38 60 7 73 35 12 10 57 80 13 52 44 16 70 8 39 107 106 63 24 92 45 75 116 5 61 49 101 71 11 53 43 102 110 1 58 36 28 76 47 113 21 89 51 19 3";
+
+        Node root = Node.of(37);
+        for (String s : data.split(" ")) {
+            BinaryTree.insert(root, Integer.parseInt(s));
+        }
+
+//        BinaryTree.printLeafNodes(root);
+        BinaryTree.printTopView(root);
+        System.out.println("");
+        BinaryTree.printTopViewWrapper(root);
+
+    }
+
+    @Test
+    public void shouldGetLowestCommonAncestor() {
+
+        String data = "3 5 1 8 12 16 11 2 4 6";
+
+        Node root = Node.of(9);
+        for (String s : data.split(" ")) {
+            BinaryTree.insert(root, Integer.parseInt(s));
+        }
+
+        BinaryTree.printLeafNodes(root);
+
+        Node result = BinaryTree.getLowestCommonAncestor(root, 4, 6);
+
+        Assertions.assertThat(result.getData()).isEqualTo(5);
+
+    }
+
+
+    @Test
+    public void shouldPrintLevelOrder() {
+
+        String data = "14 3 7 4 5 15 6 13 10 11 2 12 8 9";
+
+        Node root = Node.of(1);
+        for (String s : data.split(" ")) {
+            BinaryTree.insert(root, Integer.parseInt(s));
+        }
+
+        String result = BinaryTree.printLevelOrderTraversal(root);
+
+        Assertions.assertThat(result.trim()).isEqualTo("1 14 3 15 2 7 4 13 5 10 6 8 11 9 12");
+
+    }
+
+    @Test
     public void shouldPrintZigZagTraversal() {
 
         Node rootNode = Node.of(1);
@@ -165,5 +217,43 @@ public class BinaryTreeTest {
 
     }
 
+    @Test
+    public void shouldPrintATopViewTree() {
+
+//        1 14 3 7 4 5 15 6 13 10 11 2 12 8 9
+        Node root = Node.of(1);
+        BinaryTree.insert(root, 14);
+        BinaryTree.insert(root, 3);
+        BinaryTree.insert(root, 7);
+        BinaryTree.insert(root, 4);
+        BinaryTree.insert(root, 5);
+        BinaryTree.insert(root, 15);
+        BinaryTree.insert(root, 6);
+        BinaryTree.insert(root, 13);
+        BinaryTree.insert(root, 10);
+        BinaryTree.insert(root, 11);
+        BinaryTree.insert(root, 2);
+        BinaryTree.insert(root, 12);
+        BinaryTree.insert(root, 8);
+        BinaryTree.insert(root, 9);
+
+        BinaryTree.printLeafNodes(root);
+
+//        1
+//         \
+//          14
+//         /   \
+//        3    15
+//       / \
+//      2   7
+//         / \
+//       4    13
+//        \   /
+//         5     10
+//          \    / \
+//           6  8   11
+//               \    \
+//                9    12
+    }
 
 }

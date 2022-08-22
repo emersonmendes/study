@@ -4,14 +4,34 @@ public class ManualLinkedList {
 
     static Node head;
 
-    public void printList(Node node) {
+    public static Node addStart(Node root, int d) {
+        Node node = new Node(d);
+        node.next = root;
+        return node;
+    }
+
+    public static Node addLast(Node root, int d) {
+
+        Node node = root;
+
+        while ((root.next != null)) {
+            root = root.next;
+        }
+
+        root.next = new Node(d);
+
+        return node;
+
+    }
+
+    public static void printList(Node node) {
         while (node != null){
-            System.out.println(node.data);
+            System.out.printf("%s ",node.data);
             node = node.next;
         }
     }
 
-    public Node reverse(Node node) {
+    public static Node reverse(Node node) {
         Node current = node;
         Node next;
         Node prev = null;
@@ -38,8 +58,7 @@ public class ManualLinkedList {
         public boolean hasNext() {
             return next != null;
         }
+
     }
-
-
 
 }

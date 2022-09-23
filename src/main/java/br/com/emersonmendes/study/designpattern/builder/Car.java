@@ -16,7 +16,7 @@ public class Car {
 
     private boolean automatic;
 
-    public static class Builder {
+            public static class Builder {
 
         private final Integer year;
 

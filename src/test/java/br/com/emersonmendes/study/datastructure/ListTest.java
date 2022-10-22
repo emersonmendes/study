@@ -47,7 +47,7 @@ public class ListTest {
         ll.add("a4");
         ll.add("a5");
 
-        List<String> result = ll.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        List<String> result = ll.stream().sorted(Comparator.reverseOrder()).toList();
 
         assertThat(ll.get(4)).isEqualTo("a5");
         assertThat(result.get(4)).isEqualTo("a1");
@@ -106,11 +106,11 @@ public class ListTest {
         final Duration duration = Duration.between(start, end);
         //System.out.println(duration);
         System.out.format(
-                "%02dH %02dm %02ds %04dms \n",
-                duration.toHours(),
-                duration.toMinutes(),
-                duration.getSeconds(),
-                duration.toMillis()
+            "%02dH %02dm %02ds %04dms \n",
+            duration.toHours(),
+            duration.toMinutes(),
+            duration.getSeconds(),
+            duration.toMillis()
         );
     }
 

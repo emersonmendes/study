@@ -1,6 +1,7 @@
 package br.com.emersonmendes.study.designpattern.chainofresponsibilty;
 
 public class Processor {
+
     private final Processor nextProcessor;
 
     public Processor(Processor nextProcessor) {

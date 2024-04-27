@@ -22,7 +22,6 @@ class DiscounterTest {
 
         assertEquals(discounter.applyDiscount(BigDecimal.valueOf(20)), BigDecimal.valueOf(4.0));
 
-
     }
 
 }

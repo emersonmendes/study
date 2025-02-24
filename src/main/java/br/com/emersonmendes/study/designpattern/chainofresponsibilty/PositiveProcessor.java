@@ -7,10 +7,13 @@ class PositiveProcessor extends Processor {
     }
 
     public void process(Number request) {
-        if (request.getNumber() > 0) {
-            System.out.println("PositiveProcessor : " + request.getNumber());
-        } else {
-            super.process(request);
+
+        if (request.number() > 0) {
+            System.out.println("PositiveProcessor : " + request.number());
+            return;
         }
+
+        super.process(request);
+
     }
 }

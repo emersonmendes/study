@@ -1,6 +1,6 @@
 package br.com.emersonmendes.study.designpattern.chainofresponsibilty;
 
-public class Processor {
+public abstract class Processor {
 
     private final Processor nextProcessor;
 

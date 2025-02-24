@@ -8,11 +8,14 @@ public class SpecialProcessor extends Processor {
 
     @Override
     public void process(Number request) {
-        if (request.getNumber() == 28) {
+
+        if (request.number() == 28) {
             System.out.println("Esse é a data do Bê!");
-        } else {
-            super.process(request);
+            return;
         }
+
+        super.process(request);
+
     }
 
 }

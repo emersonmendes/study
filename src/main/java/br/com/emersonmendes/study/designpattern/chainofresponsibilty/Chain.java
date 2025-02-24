@@ -2,7 +2,7 @@ package br.com.emersonmendes.study.designpattern.chainofresponsibilty;
 
 public class Chain {
 
-    private Processor chain;
+    private final Processor chain;
 
     public Chain(){
         PositiveProcessor positiveProcessor = new PositiveProcessor(null);
@@ -12,10 +12,13 @@ public class Chain {
     }
 
     public void process(Number request) {
-        if(request.getNumber() == 9999){
+
+        if(request.number() == 9999){
             throw new RuntimeException("The chain was broken!");
         }
+
         chain.process(request);
+
     }
 
 }

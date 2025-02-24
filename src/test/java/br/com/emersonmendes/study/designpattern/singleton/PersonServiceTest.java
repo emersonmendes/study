@@ -15,8 +15,8 @@ class PersonServiceTest {
 
         Assertions.assertEquals(service1, service2);
 
-        Assertions.assertEquals(service1.doSomething(), "Something!");
-        Assertions.assertEquals(service2.doSomething(), "Something!");
+        Assertions.assertEquals("Something!", service1.doSomething());
+        Assertions.assertEquals("Something!", service2.doSomething());
     }
 
 }

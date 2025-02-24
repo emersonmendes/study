@@ -14,7 +14,7 @@ class ObserverTest {
 
         newsAgencyObservable.addObserver(newsChannelObserver);
         newsAgencyObservable.setNews("news");
-        assertEquals(newsChannelObserver.getNews(), "news");
+        assertEquals("news", newsChannelObserver.getNews());
 
     }
 
@@ -26,7 +26,7 @@ class ObserverTest {
 
         observable.addObserver(observer);
         observable.setNews("news");
-        assertEquals(observer.getNews(), "news");
+        assertEquals("news", observer.getNews());
 
     }
 

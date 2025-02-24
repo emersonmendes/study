@@ -5,8 +5,9 @@ import br.com.emersonmendes.study.entity.ExecutiveTicket;
 import br.com.emersonmendes.study.entity.FirstTicket;
 import br.com.emersonmendes.study.entity.Ticket;
 import br.com.emersonmendes.study.enums.TicketType;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class TicketFactoryTest {
 
@@ -15,16 +16,17 @@ class TicketFactoryTest {
     void shouldTest() {
 
         Ticket economicTicket = TicketFactory.getInstance(TicketType.ECONOMIC_CLASS);
-        Assertions.assertThat(economicTicket).isInstanceOf(EconomicTicket.class);
+        assertThat(economicTicket).isInstanceOf(EconomicTicket.class);
+        assertThat(economicTicket.getCode()).isEqualTo("ECONOMIC");
 
         Ticket economicTicket2 = TicketFactory.getInstance(TicketType.ECONOMIC_CLASS);
-        Assertions.assertThat(economicTicket2).isInstanceOf(EconomicTicket.class);
+        assertThat(economicTicket2).isInstanceOf(EconomicTicket.class);
 
         Ticket executiveTicket = TicketFactory.getInstance(TicketType.EXECUTIVE_CLASS);
-        Assertions.assertThat(executiveTicket).isInstanceOf(ExecutiveTicket.class);
+        assertThat(executiveTicket).isInstanceOf(ExecutiveTicket.class);
 
         Ticket firstClassTicket = TicketFactory.getInstance(TicketType.FIRST_CLASS);
-        Assertions.assertThat(firstClassTicket).isInstanceOf(FirstTicket.class);
+        assertThat(firstClassTicket).isInstanceOf(FirstTicket.class);
 
     }
 

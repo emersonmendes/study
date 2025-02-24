@@ -1,7 +1,7 @@
 package br.com.emersonmendes.study.designpattern;
 
-import br.com.emersonmendes.study.designpattern.adapter.Duck;
-import br.com.emersonmendes.study.designpattern.adapter.DuckMarreco;
+import br.com.emersonmendes.study.designpattern.adapter.Pato;
+import br.com.emersonmendes.study.designpattern.adapter.PatoBranco;
 import br.com.emersonmendes.study.designpattern.adapter.PeruAdapter;
 import br.com.emersonmendes.study.designpattern.adapter.PeruAustraliano;
 import org.junit.jupiter.api.Test;
@@ -13,12 +13,12 @@ public class AdapterTest {
     @Test
     public void shouldTestAdapter()  {
 
-        Duck duck = new DuckMarreco();
+        Pato pato = new PatoBranco();
 
-        Duck peruAdapter = new PeruAdapter( new PeruAustraliano());
+        Pato peruAdapter = new PeruAdapter( new PeruAustraliano());
 
-        assertThat(duck.grasnar()).isEqualTo("Quack, quack, quack.");
-        assertThat(duck.voar()).isEqualTo("Voar, voar, voar, voar, voar");
+        assertThat(pato.grasnar()).isEqualTo("Quack, quack, quack.");
+        assertThat(pato.voar()).isEqualTo("Voar, voar, voar, voar, voar");
 
         assertThat(peruAdapter.grasnar()).isEqualTo("Brulu, brulu, brulu.");
         assertThat(peruAdapter.voar()).isEqualTo("Voar.");

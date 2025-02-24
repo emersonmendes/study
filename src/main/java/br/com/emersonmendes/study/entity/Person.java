@@ -54,7 +54,7 @@ public class Person {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, bloodType, age);
+        return Objects.hash(name);
     }
 
     @Override

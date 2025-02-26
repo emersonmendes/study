@@ -2,14 +2,14 @@ package br.com.emersonmendes.study.solid._5dependencyinversion.bad;
 
 public class OrderService {
 
-    private MySQLDatabase database;
+    private final MyFunction provider;
 
-    public OrderService() {
-        this.database = new MySQLDatabase();
+    public OrderService(MyFunction provider) {
+        this.provider = provider;
     }
 
     public String saveOrder(String order) {
-        return database.save(order);
+        return this.provider.doSomething("read").save(order);
     }
 
 }

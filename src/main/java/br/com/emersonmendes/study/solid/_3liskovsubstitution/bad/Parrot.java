@@ -1,11 +1,12 @@
 package br.com.emersonmendes.study.solid._3liskovsubstitution.bad;
 
-public class Parrot extends Bird {
+import br.com.emersonmendes.study.solid._3liskovsubstitution.good.Flyable;
+
+public class Parrot extends Bird implements Flyable {
 
     @Override
-    public boolean fly() {
-        System.out.println("The parrot is flying");
-        return true;
+    public void fly() {
+
     }
 
 }

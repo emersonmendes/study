@@ -20,11 +20,5 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    // Método para salvar o usuário no banco de dados
-    public void save() {
-        // Lógica de persistência (por exemplo, conexão com o banco de dados)
-        System.out.println("Salvando o usuário " + name + " no banco de dados.");
-    }
 
 }

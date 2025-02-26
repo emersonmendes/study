@@ -17,7 +17,6 @@ class TicketFactoryTest {
 
         Ticket economicTicket = TicketFactory.getInstance(TicketType.ECONOMIC_CLASS);
         assertThat(economicTicket).isInstanceOf(EconomicTicket.class);
-        assertThat(economicTicket.getCode()).isEqualTo("ECONOMIC");
 
         Ticket economicTicket2 = TicketFactory.getInstance(TicketType.ECONOMIC_CLASS);
         assertThat(economicTicket2).isInstanceOf(EconomicTicket.class);

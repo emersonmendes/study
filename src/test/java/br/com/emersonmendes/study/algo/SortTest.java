@@ -45,34 +45,34 @@ class SortTest {
     @Test
     void shouldDoSomeTests() {
 
-        long startTime;
-        long endTime;
-        int[] randomIntsArray;
-        int boundLimit = 1000000;
-
-        randomIntsArray = IntStream.generate(() -> new Random().nextInt(boundLimit)).limit(boundLimit).toArray();
-        startTime = System.currentTimeMillis();
-        Arrays.sort(randomIntsArray);
-        endTime = System.currentTimeMillis();
-        System.out.println("JavaNativeSort took " + (endTime - startTime) + " milliseconds");
-
-        randomIntsArray = IntStream.generate(() -> new Random().nextInt(boundLimit)).limit(boundLimit).toArray();
-        startTime = System.currentTimeMillis();
-        Sort.mergeSort(randomIntsArray);
-        endTime = System.currentTimeMillis();
-        System.out.println("MergeSort took " + (endTime - startTime) + " milliseconds");
-
-        randomIntsArray = IntStream.generate(() -> new Random().nextInt(boundLimit)).limit(boundLimit).toArray();
-        startTime = System.currentTimeMillis();
-        Sort.bubbleSort(randomIntsArray);
-        endTime = System.currentTimeMillis();
-        System.out.println("BubleSort took " + (endTime - startTime) + " milliseconds");
-
-        randomIntsArray = IntStream.generate(() -> new Random().nextInt(boundLimit)).limit(boundLimit).toArray();
-        startTime = System.currentTimeMillis();
-        Sort.quickSort(randomIntsArray);
-        endTime = System.currentTimeMillis();
-        System.out.println("QuickSort took " + (endTime - startTime) + " milliseconds");
+//        long startTime;
+//        long endTime;
+//        int[] randomIntsArray;
+//        int boundLimit = 1000000;
+//
+//        randomIntsArray = IntStream.generate(() -> new Random().nextInt(boundLimit)).limit(boundLimit).toArray();
+//        startTime = System.currentTimeMillis();
+//        Arrays.sort(randomIntsArray);
+//        endTime = System.currentTimeMillis();
+//        System.out.println("JavaNativeSort took " + (endTime - startTime) + " milliseconds");
+//
+//        randomIntsArray = IntStream.generate(() -> new Random().nextInt(boundLimit)).limit(boundLimit).toArray();
+//        startTime = System.currentTimeMillis();
+//        Sort.mergeSort(randomIntsArray);
+//        endTime = System.currentTimeMillis();
+//        System.out.println("MergeSort took " + (endTime - startTime) + " milliseconds");
+//
+//        randomIntsArray = IntStream.generate(() -> new Random().nextInt(boundLimit)).limit(boundLimit).toArray();
+//        startTime = System.currentTimeMillis();
+//        Sort.bubbleSort(randomIntsArray);
+//        endTime = System.currentTimeMillis();
+//        System.out.println("BubleSort took " + (endTime - startTime) + " milliseconds");
+//
+//        randomIntsArray = IntStream.generate(() -> new Random().nextInt(boundLimit)).limit(boundLimit).toArray();
+//        startTime = System.currentTimeMillis();
+//        Sort.quickSort(randomIntsArray);
+//        endTime = System.currentTimeMillis();
+//        System.out.println("QuickSort took " + (endTime - startTime) + " milliseconds");
 
     }
 

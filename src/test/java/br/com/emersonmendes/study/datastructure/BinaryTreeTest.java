@@ -70,7 +70,7 @@ public class BinaryTreeTest {
 
         Node result = BinaryTree.getLowestCommonAncestor(root, 4, 6);
 
-        Assertions.assertThat(result.getData()).isEqualTo(5);
+        Assertions.assertThat(result.getNumber()).isEqualTo(5);
 
     }
 
@@ -143,9 +143,9 @@ public class BinaryTreeTest {
 
         Node foundNode = BinaryTree.search(rootNode, 2);
         Assertions.assertThat(foundNode).isNotNull();
-        Assertions.assertThat(foundNode.getData()).isEqualTo(2);
-        Assertions.assertThat(foundNode.getRight().getData()).isEqualTo(4);
-        Assertions.assertThat(foundNode.getLeft().getData()).isEqualTo(1);
+        Assertions.assertThat(foundNode.getNumber()).isEqualTo(2);
+        Assertions.assertThat(foundNode.getRight().getNumber()).isEqualTo(4);
+        Assertions.assertThat(foundNode.getLeft().getNumber()).isEqualTo(1);
 
     }
 
@@ -160,14 +160,14 @@ public class BinaryTreeTest {
         BinaryTree.insert(rootNode, 2);
         BinaryTree.insert(rootNode, 191);
 
-        Assertions.assertThat(rootNode.getData()).isEqualTo(300);
-        Assertions.assertThat(rootNode.getLeft().getData()).isEqualTo(190);
-        Assertions.assertThat(rootNode.getRight().getData()).isEqualTo(500);
-        Assertions.assertThat(rootNode.getLeft().getLeft().getData()).isEqualTo(20);
-        Assertions.assertThat(rootNode.getLeft().getLeft().getData()).isEqualTo(20);
-        Assertions.assertThat(rootNode.getRight().getRight().getData()).isEqualTo(543);
-        Assertions.assertThat(rootNode.getLeft().getLeft().getLeft().getData()).isEqualTo(2);
-        Assertions.assertThat(rootNode.getLeft().getRight().getData()).isEqualTo(191);
+        Assertions.assertThat(rootNode.getNumber()).isEqualTo(300);
+        Assertions.assertThat(rootNode.getLeft().getNumber()).isEqualTo(190);
+        Assertions.assertThat(rootNode.getRight().getNumber()).isEqualTo(500);
+        Assertions.assertThat(rootNode.getLeft().getLeft().getNumber()).isEqualTo(20);
+        Assertions.assertThat(rootNode.getLeft().getLeft().getNumber()).isEqualTo(20);
+        Assertions.assertThat(rootNode.getRight().getRight().getNumber()).isEqualTo(543);
+        Assertions.assertThat(rootNode.getLeft().getLeft().getLeft().getNumber()).isEqualTo(2);
+        Assertions.assertThat(rootNode.getLeft().getRight().getNumber()).isEqualTo(191);
 
     }
 
@@ -205,13 +205,13 @@ public class BinaryTreeTest {
         BinaryTree.printLeafNodes(root);
 
         BinaryTree.invert(root);
-        Assertions.assertThat(root.getData()).isEqualTo(20);
-        Assertions.assertThat(root.getLeft().getData()).isEqualTo(45);
-        Assertions.assertThat(root.getRight().getData()).isEqualTo(15);
-        Assertions.assertThat(root.getLeft().getLeft().getData()).isEqualTo(46);
-        Assertions.assertThat(root.getLeft().getRight().getData()).isEqualTo(21);
-        Assertions.assertThat(root.getRight().getLeft().getData()).isEqualTo(16);
-        Assertions.assertThat(root.getRight().getRight().getData()).isEqualTo(7);
+        Assertions.assertThat(root.getNumber()).isEqualTo(20);
+        Assertions.assertThat(root.getLeft().getNumber()).isEqualTo(45);
+        Assertions.assertThat(root.getRight().getNumber()).isEqualTo(15);
+        Assertions.assertThat(root.getLeft().getLeft().getNumber()).isEqualTo(46);
+        Assertions.assertThat(root.getLeft().getRight().getNumber()).isEqualTo(21);
+        Assertions.assertThat(root.getRight().getLeft().getNumber()).isEqualTo(16);
+        Assertions.assertThat(root.getRight().getRight().getNumber()).isEqualTo(7);
 
         BinaryTree.printLeafNodes(root);
 

@@ -1,6 +1,4 @@
-package br.com.emersonmendes.study.designpattern.fluentapi;
-
-import java.util.Objects;
+package br.com.emersonmendes.study.designpattern.stepbuilder;
 
 public class SubwayFluent {
 

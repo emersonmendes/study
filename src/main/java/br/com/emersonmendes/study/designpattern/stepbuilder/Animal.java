@@ -1,4 +1,4 @@
-package br.com.emersonmendes.study.designpattern.fluentapi;
+package br.com.emersonmendes.study.designpattern.stepbuilder;
 
 public class Animal {
 

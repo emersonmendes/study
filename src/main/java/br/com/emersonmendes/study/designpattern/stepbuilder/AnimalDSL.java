@@ -1,4 +1,4 @@
-package br.com.emersonmendes.study.designpattern.fluentapi;
+package br.com.emersonmendes.study.designpattern.stepbuilder;
 
 import java.util.Objects;
 

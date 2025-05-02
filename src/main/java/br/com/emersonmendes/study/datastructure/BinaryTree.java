@@ -7,18 +7,18 @@ class BinaryTree {
 
     public BinaryTree() {}
 
-    public static Node insert(Node node, int data){
+    public static Node insert(Node node, int number){
 
         if(node == null){
-            return Node.of(data);
+            return Node.of(number);
         }
 
-        int rootData = node.getData();
+        int rootNumber = node.getNumber();
 
-        if(data > rootData){
-            node.setRight(insert(node.getRight(), data));
-        } else if (data < rootData){
-            node.setLeft(insert(node.getLeft(), data));
+        if(number > rootNumber){
+            node.setRight(insert(node.getRight(), number));
+        } else if (number < rootNumber){
+            node.setLeft(insert(node.getLeft(), number));
         }
 
         return node;
@@ -31,7 +31,7 @@ class BinaryTree {
         while (currentNode.getLeft() != null){
             currentNode = currentNode.getLeft();
         }
-        return currentNode.getData();
+        return currentNode.getNumber();
     }
 
     public static int searchMaxValue(Node root){
@@ -40,18 +40,18 @@ class BinaryTree {
         while (currentNode.getRight() != null){
             currentNode = currentNode.getRight();
         }
-        return currentNode.getData();
+        return currentNode.getNumber();
     }
 
     public static Node search(Node root, int data){
 
         // Base Cases: root is null or data is present at root
-        if (root == null || root.getData() == data) {
+        if (root == null || root.getNumber() == data) {
             return root;
         }
 
         // Data is greater than root's data
-        if (root.getData() < data) {
+        if (root.getNumber() < data) {
             return search(root.getRight(), data);
         }
 
@@ -68,13 +68,13 @@ class BinaryTree {
 
         Node left = node.getLeft();
         Node right = node.getRight();
-        int data = node.getData();
+        int data = node.getNumber();
 
-        if(left != null && left.getData() > data){
+        if(left != null && left.getNumber() > data){
             return false;
         }
 
-        if(right != null && right.getData() < data){
+        if(right != null && right.getNumber() < data){
             return false;
         }
 
@@ -254,7 +254,7 @@ class BinaryTree {
             Node node = currentLevel.pop();
 
             // print the data in it
-            System.out.print(node.getData() + " ");
+            System.out.print(node.getNumber() + " ");
 
             if (leftToRight) {
                 if (node.getLeft() != null) {
@@ -312,7 +312,7 @@ class BinaryTree {
         List<Node> newNodes = new ArrayList<>();
         for (Node node : nodes) {
             if (node != null) {
-                System.out.print(node.getData());
+                System.out.print(node.getNumber());
                 newNodes.add(node.getLeft());
                 newNodes.add(node.getRight());
             } else {
@@ -437,7 +437,7 @@ class BinaryTree {
             return node;
         }
 
-        public int getData() {
+        public int getNumber() {
             return data;
         }
 
